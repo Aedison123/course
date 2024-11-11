@@ -1,0 +1,23 @@
+<!-- login.html (or any page after logout) -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Page</title>
+</head>
+<body>
+    <h1>Please log in</h1>
+
+    <!-- Your login form here -->
+
+    <!-- Prevent back button script -->
+    <script>
+        // Prevent going back to the previous page after logout
+        history.pushState(null, null, location.href);  // Push current page to history
+        window.onpopstate = function() {
+            history.go(1);  // Move forward in history, essentially blocking back button
+        };
+    </script>
+</body>
+</html>

@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Logged Out</title>
+    <script type="text/javascript">
+        // Disable the browser's back button after logout
+        window.history.forward();
+        function noBack() {
+            window.history.forward();
+        }
+        window.onload = noBack;
+        window.onpageshow = function(evt) { 
+            if (evt.persisted) noBack(); 
+        };
+        window.onunload = function() { void(0); };
+    </script>
+</head>
+<body>
+    <h1>You have successfully logged out.</h1>
+    <p>You are being redirected to the login page...</p>
+    <p>If the page doesn't redirect, <a href="{% url 'login' %}">click here</a>.</p>
+</body>
+</html>

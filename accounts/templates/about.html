@@ -1,0 +1,235 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <meta name="description" content="About Eagle Fly Academy - Empowering Future Hackers & Cybersecurity Experts" />
+    <title>About Us - Eagle Fly Academy</title>
+    <link rel="icon" type="image/x-icon" href="{% static 'assets/favicon.ico' %}" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" rel="stylesheet" />
+    <link href="{% static 'craft/css/styles.css' %}" rel="stylesheet" />
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #0e1117;
+            margin: 0;
+            color: #ffffff;
+        }
+
+        .navbar {
+            background-color: #222;
+            margin-bottom: 30px;
+        }
+
+       
+        .container {
+            max-width: 900px;
+            margin: auto;
+            padding: 30px;
+        }
+
+        h1 {
+            text-align: center;
+            color: #00ff00;
+            margin-bottom: 30px;
+            font-size: 3em;
+            font-weight: bold;
+        }
+
+        .section-title {
+            text-align: center;
+            color: #00ff00;
+            font-size: 2em;
+            margin-top: 30px;
+            margin-bottom: 15px;
+        }
+
+        .section-content {
+            text-align: center;
+            line-height: 1.8;
+            margin-bottom: 30px;
+            font-size: 1.2em;
+        }
+
+        .highlight {
+            color: #00ff00;
+            font-weight: bold;
+        }
+
+        .footer {
+            text-align: center;
+            margin-top: 20px;
+            padding: 20px 0;
+            background-color: #222;
+            color: white;
+        }
+
+        .footer img {
+            width: 300px;
+            height: auto;
+        }
+
+        a {
+            color: #00ff00;
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        .contact-section {
+            background-color: #333;
+            padding: 40px 0;
+            margin-top: 40px;
+            border-radius: 10px;
+        }
+
+        .contact-section h2 {
+            color: #00ff00;
+            font-size: 2.5em;
+            margin-bottom: 20px;
+        }
+
+        .contact-info p {
+            font-size: 1.2em;
+            margin: 10px 0;
+        }
+
+        .contact-info a {
+            color: #00ff00;
+            font-weight: bold;
+        }
+
+        .contact-info a:hover {
+            text-decoration: underline;
+        }
+
+        .contact-form input, .contact-form textarea {
+            width: 100%;
+            padding: 12px;
+            margin: 10px 0;
+            border: 1px solid #444;
+            background-color: #222;
+            color: #fff;
+            border-radius: 5px;
+        }
+
+        .contact-form button {
+            background-color: #00ff00;
+            color: #222;
+            border: none;
+            padding: 15px;
+            width: 100%;
+            font-size: 1.2em;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+
+        .contact-form button:hover {
+            background-color: #00cc00;
+        }
+
+        /* Responsive Styles */
+        @media (max-width: 768px) {
+            .container {
+                padding: 15px; /* Reduced padding for smaller screens */
+            }
+            h1 {
+                font-size: 2em;
+            }
+        }
+
+        @media (max-width: 576px) {
+            h1 {
+                font-size: 1.5em;
+            }
+            .section-title {
+                font-size: 1.5em;
+            }
+            .section-content {
+                font-size: 1em;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-dark">
+        <div class="container">
+            <a class="navbar-brand" href="#!">
+                <img src="{% static 'craft/image/we.png' %}" alt="Eagle Fly Academy Logo">
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item"><a class="nav-link" href="{% url 'accounts:home' %}">Home</a></li>
+                    <li class="nav-item"><a class="nav-link active" href="{% url 'accounts:about' %}">About</a></li>
+                    
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- About Us Section -->
+    <div class="container">
+        
+
+        <div class="section-title">Our Mission</div>
+        <div class="section-content">
+            At **Eagle Fly Academy**, we aim to provide top-tier ethical hacking and cybersecurity training, empowering our students to become highly skilled professionals in the cybersecurity field. 
+            We focus on real-world applications, preparing our students to face modern cyber threats with confidence.
+        </div>
+
+      
+        <div class="section-title">Why Choose Us?</div>
+        <div class="section-content">
+            Here’s why **Eagle Fly Academy** stands out:
+            <ul>
+                <li><span class="highlight">Expert Instructors:</span> Learn from professionals with years of hands-on experience.</li>
+                <li><span class="highlight">Real-World Training:</span> Our interactive labs simulate real-world hacking and defense scenarios.</li>
+                <li><span class="highlight">Flexible Learning:</span> Learn at your own pace from anywhere in the world with 24/7 access to our online platform.</li>
+                
+                
+            </ul>
+            
+        </div>
+
+        <div class="section-title">Our Vision</div>
+        <div class="section-content">
+            Our goal is to become a global leader in cybersecurity education. We strive to create a community of skilled professionals who can protect the digital world from malicious actors. 
+            We aim to equip our students with the knowledge and confidence they need to become **digital defenders**.
+        </div>
+
+        <div class="section-title">Join Us Today</div>
+        <div class="section-content">
+            Ready to start your journey into ethical hacking and cybersecurity? Join **Eagle Fly Academy** today, and begin your path to becoming a cybersecurity expert. 
+            Whether you want to build your career in ethical hacking, penetration testing, or cybersecurity, we are here to help you succeed.
+        </div>
+    </div>
+
+    <!-- Contact Us Section -->
+    <div class="contact-section">
+        <div class="container">
+            <h2>Contact Us</h2>
+            <div class="contact-info">
+                <p>Have questions? Need more information? Reach out to us!</p>
+                <p><strong>Email:</strong> <a href="mailto:info@eagleflyacademy.com">info@eagleflyacademy.com</a></p>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        
+        <p class="m-0">Copyright &copy; Eagle Fly Academy 2024</p>
+            
+       
+    </footer>
+
+    <!-- Bootstrap core JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

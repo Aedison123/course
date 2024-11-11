@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Page</title>
+</head>
+<body>
+    <h1>Please log in</h1>
+
+    <!-- Your login form or content here -->
+
+    <!-- Prevent back button script -->
+    <script>
+      // Disable back button functionality on the page
+      history.pushState(null, null, location.href);  // Push the current state to history
+      window.onpopstate = function () {
+        history.go(1);  // When back button is pressed, push forward in history
+      };
+    </script>
+</body>
+</html>

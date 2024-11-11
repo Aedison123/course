@@ -1,0 +1,335 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <meta name="description" content="Shilpakala Online Store" />
+    <meta name="author" content="xx" />
+    <title>Homepage</title>
+    <link rel="icon" type="image/x-icon" href="{% static 'assets/favicon.ico' %}" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" rel="stylesheet" />
+    <link href="{% static 'craft/css/styles.css' %}" rel="stylesheet" />
+    <style>
+        /* General Styles */
+        html, body {
+            height: 100%; /* Ensure full height for html and body */
+            margin: 0;
+            padding: 0;
+            overflow-x: hidden;
+        }
+
+        body {
+            font-family: 'Courier New', Courier, monospace;
+            background-color: #111111;
+            color: #FFFFFF;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* Matrix Background (animated effect) */
+        .matrix-background {
+            position: fixed; /* Fix the canvas in the background */
+            top: 0;
+            left: 0;
+            width: 100vw; /* Full viewport width */
+            height: 100vh; /* Full viewport height */
+            z-index: -1; /* Make sure it's behind all other content */
+            pointer-events: none;
+        }
+
+        .matrix-background canvas {
+            display: block; /* Remove space below the canvas */
+        }
+
+        /* Professional Shine Effect */
+        .shine-text {
+            font-size: 3rem;
+            font-weight: 700;
+            color: #FFFFFF;
+            text-transform: uppercase;
+            position: relative;
+            display: inline-block;
+        }
+
+        .shine-text::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0.8) 50%, rgba(255, 255, 255, 0) 100%);
+            animation: shine 2s infinite;
+        }
+
+        /* Shine Animation */
+        @keyframes shine {
+            0% {
+                left: -100%;
+            }
+
+            50% {
+                left: 100%;
+            }
+
+            100% {
+                left: -100%;
+            }
+        }
+
+        /* Navbar */
+        .navbar {
+            background-color: #1A1A1A;
+            border-bottom: 2px solid #00FF00;
+        }
+
+        .navbar-brand img {
+            height: 50px;
+        }
+
+        .navbar-nav .nav-link {
+            color: #fff;
+            font-size: 1.1rem;
+            padding-left: 10px;
+            text-decoration: none;
+        }
+
+        .navbar-nav .nav-link:hover {
+            color: #00FF00;
+        }
+
+        .navbar-nav .nav-link.active {
+            color: #00FF00;
+            font-weight: bold;
+        }
+
+        /* Card */
+        .card {
+            transition: transform 0.3s, box-shadow 0.3s ease;
+            overflow: hidden;
+            cursor: pointer;
+            background-color: #1e1e1e;
+            border-radius: 13px;
+            box-shadow: 0 4px 8px rgba(0, 255, 0, 0.3);
+            max-width: 150px;
+            margin: auto;
+        }
+
+        .card:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 20px rgba(0, 255, 0, 0.6);
+        }
+
+        .card-body h5 {
+            font-size: 1.3rem;
+            color: #00FF00;
+            margin-bottom: 1rem;
+            transition: text-shadow 0.3s ease;
+        }
+
+        .card-body h5:hover {
+            color: #e3dee1;
+        }
+
+        /* Button Styles */
+        .buy-btn,
+        .watch-btn {
+            background-color: #00FF00;
+            color: #000000;
+            border: none;
+            padding: 10px;
+            font-size: 1rem;
+            width: 100%;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+            cursor: pointer;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .buy-btn:hover,
+        .watch-btn:hover {
+            background-color: #1e90ff;
+            color: #fff;
+        }
+
+        .buy-btn i,
+        .watch-btn i {
+            margin-right: 8px;
+        }
+
+        .price {
+            font-weight: bold;
+            font-size: 1.5rem;
+            color: #d9534f;
+        }
+
+        /* Footer */
+        footer {
+            background-color: #1A1A1A;
+            color: #00FF00;
+            padding: 2rem 0;
+            text-align: center;
+            width: 100%;
+            position: relative;
+            bottom: 0;
+        }
+
+        footer a {
+            color: #00FF00;
+            text-decoration: none;
+        }
+
+        /* Icon Styling */
+        .icon-lg {
+            font-size: 4rem;
+            margin-right: 15px;
+        }
+
+        /* Responsive Design for Cards */
+        @media (max-width: 767px) {
+            .card {
+                max-width: 80%;
+            }
+
+            .card-body h5 {
+                font-size: 0.9rem;
+            }
+
+            /* Adjust Shining Text for Mobile */
+            .shine-text {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Matrix Background (animated effect) -->
+    <div class="matrix-background">
+        <canvas id="matrix-canvas"></canvas>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-dark">
+        <div class="container">
+            <a class="navbar-brand" href="#!">
+                <img src="{% static 'craft/image/we.png' %}" alt="Logo">
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item"><a class="nav-link active" href="{% url 'accounts:home'%}"><i class="bi bi-house-door"></i> Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{% url 'accounts:about'%}"><i class="bi bi-info-circle"></i> About</a></li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            <i class="bi bi-person-circle"></i> {{ user.username }}
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <form method="post" action="{% url 'accounts:logout' %}">
+                                {% csrf_token %}
+                                <button type="submit" class="dropdown-item"><i class="bi bi-box-arrow-right"></i> Logout</button>
+                            </form>
+                        </ul>
+                    </li>
+                </ul>
+                <div class="search-container">
+                    <form action="{% url 'accounts:searched' %}" method="GET" class="d-flex w-100">
+                        <input class="search-bar" type="search" name="q" placeholder="Search" aria-label="Search">
+                        <button type="submit" class="search-button"><i class="bi bi-search"></i></button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Shining Text Section -->
+    <section class="py-5">
+        {% if user.is_authenticated %}
+        <h1 class="text-center shine-text">
+            <i class="bi bi-trophy icon-lg"></i> Skill Up Now
+        </h1>
+        <div class="container px-4 px-lg-5 mt-5">
+            <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-lg-4 row-cols-xl-6 justify-content-center">
+                {% for product in products %}
+                <div class="col mb-5">
+                    <div class="card h-100">
+                        <a href="{% url 'accounts:product_detail' product.id %}">
+                            <img class="card-img-top" src="{{ product.image.url }}" alt="{{ product.name }}" />
+                        </a>
+                        <div class="card-body p-4">
+                            <div class="text-center">
+                                <h5 class="fw-bolder glitch">{{ product.name }}</h5>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {% empty %}
+                </div>
+                <div class="col-12 text-center">
+                    <p>No products available.</p>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+        {% endif %}
+    </section>
+  
+        
+    <!-- Footer -->
+    <footer class="py-5">
+        <div class="container d-flex justify-content-between align-items-center">
+            <p class="m-0">Copyright &copy; Edison Website 2024</p>
+            <a href="#!"><img src="{% static 'craft/image/we.png' %}" width="120" height="60" alt="Logo"></a>
+        </div>
+    </footer>
+
+    <!-- Bootstrap core JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="{% static 'craft/js/scripts.js' %}"></script>
+
+    <!-- Matrix Background Script -->
+    <script>
+        var canvas = document.getElementById("matrix-canvas");
+        var ctx = canvas.getContext("2d");
+
+        // Fullscreen canvas
+        canvas.height = window.innerHeight;
+        canvas.width = window.innerWidth;
+
+        var characters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789@#$%^&*()".split("");
+        var fontSize = 12;
+        var columns = canvas.width / fontSize;
+        var drops = Array(columns).fill(1);
+
+        function drawMatrix() {
+            ctx.fillStyle = "rgba(0, 0, 0, 0.05)";
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+            ctx.fillStyle = "#00FF00"; // Text color
+            ctx.font = fontSize + "px Courier";
+
+            for (var i = 0; i < drops.length; i++) {
+                var text = characters[Math.floor(Math.random() * characters.length)];
+                ctx.fillText(text, i * fontSize, drops[i] * fontSize);
+
+                if (drops[i] * fontSize > canvas.height && Math.random() > 0.975) {
+                    drops[i] = 0;
+                }
+
+                drops[i]++;
+            }
+        }
+
+        setInterval(drawMatrix, 35);
+    </script>
+</body>
+
+</html>

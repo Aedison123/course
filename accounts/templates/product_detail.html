@@ -1,0 +1,200 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <meta name="description" content="Shilpakala Online Store" />
+    <meta name="author" content="Edison" />
+    <title>eaglefly</title>
+    <link rel="icon" type="image/x-icon" href="{% static 'assets/favicon.ico' %}" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" rel="stylesheet" />
+    <link href="{% static 'craft/css/styles.css' %}" rel="stylesheet" />
+    <style>
+        /* General Styles */
+        body {
+            font-family: 'Courier New', Courier, monospace;
+            background-color: #111111;
+            color: #FFFFFF;
+            margin: 0;
+            overflow-x: hidden;
+        }
+
+        /* Navbar */
+        .navbar {
+            background-color: #1A1A1A;
+            border-bottom: 2px solid #00FF00;
+        }
+
+        .navbar-brand img {
+            height: 50px;
+        }
+
+        .navbar-nav .nav-link {
+            color: #fff;
+            font-size: 1.1rem;
+            padding-left: 10px;
+            text-decoration: none;
+        }
+
+        .navbar-nav .nav-link:hover {
+            color: #00FF00;
+        }
+
+        .navbar-nav .nav-link.active {
+            color: #00FF00;
+            font-weight: bold;
+        }
+
+        /* Video Section */
+        .video-container {
+            max-width: 100%;
+            text-align: center;
+            margin: 2rem auto;
+        }
+
+        .video-container h2 {
+            color: #00FF00;
+            margin-bottom: 1rem;
+        }
+
+        .video-controls {
+            margin-top: 10px;
+            text-align: center;
+        }
+
+        .video-controls button {
+            background-color: #00FF00;
+            color: black;
+            border: none;
+            padding: 10px 20px;
+            font-size: 1rem;
+            margin: 5px;
+            cursor: pointer;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+        }
+
+        .video-controls button:hover {
+            background-color: #1e90ff;
+            color: white;
+        }
+
+        /* Back Button */
+        .back-btn {
+            background-color: #1A1A1A;
+            color: #FFFFFF;
+            padding: 10px 20px;
+            font-size: 1rem;
+            border: none;
+            cursor: pointer;
+            margin: 10px 0;
+            transition: background-color 0.3s;
+            border-radius: 5px;
+        }
+
+        .back-btn:hover {
+            background-color: #00FF00;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 767px) {
+            .video-controls button {
+                padding: 8px 16px;
+                font-size: 0.9rem;
+            }
+
+            .video-container h2 {
+                font-size: 1.5rem;
+            }
+
+            video {
+                max-width: 100%;
+                height: auto;
+            }
+
+            .navbar-nav .nav-link {
+                font-size: 1rem;
+                padding-left: 5px;
+            }
+
+            .navbar-toggler {
+                font-size: 1.2rem;
+            }
+
+            footer {
+                font-size: 0.9rem;
+            }
+        }
+
+        /* Footer */
+        footer {
+            background-color: #1A1A1A;
+            padding: 1rem;
+            color: #FFFFFF;
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        footer img {
+            width: 50px;
+            margin-top: 1rem;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-dark">
+        <div class="container">
+            <a class="navbar-brand" href="#!">
+                <img src="{% static 'craft/image/we.png' %}" alt="Logo">
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item"><a class="nav-link active" href="{% url 'accounts:home'%}"><i class="bi bi-house-door"></i> Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{% url 'accounts:about'%}"><i class="bi bi-info-circle"></i> About</a></li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            <i class="bi bi-person-circle"></i> {{ user.username }}
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <form method="post" action="{% url 'accounts:logout' %}">
+                                {% csrf_token %}
+                                <button type="submit" class="dropdown-item"><i class="bi bi-box-arrow-right"></i> Logout</button>
+                            </form>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Video Section -->
+    {% if product.video %}
+    <div class="video-container">
+        <h2>{{ product.name }}</h2>
+        <video id="product-video" controls controlsList="nodownload" oncontextmenu="return false;" playsinline>
+            <source src="{{ product.video.url }}" type="video/mp4" />
+            Your browser does not support the video tag.
+        </video>
+    </div>
+    {% endif %}
+
+    <!-- Footer -->
+    <footer>
+        <div class="video-controls">
+            <button class="back-btn" onclick="window.history.back()">Back</button>
+        </div>
+    </footer>
+
+    <!-- Bootstrap JS and Popper.js -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>
